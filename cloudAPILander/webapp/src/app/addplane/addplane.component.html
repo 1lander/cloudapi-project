@@ -1,0 +1,52 @@
+<form #myForm="ngForm" (ngSubmit)="addplane()">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">manufacturer</span>
+  </div>
+  <input [(ngModel)]="postobj.manufacturer" [ngModelOptions]="{standalone: true}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" ngControl="post">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">type</span>
+  </div>
+  <input [(ngModel)]="postobj.type" [ngModelOptions]="{standalone: true}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">range</span>
+  </div>
+  <input [(ngModel)]="postobj.range" [ngModelOptions]="{standalone: true}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">seats</span>
+  </div>
+  <input [(ngModel)]="postobj.seats" [ngModelOptions]="{standalone: true}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">length</span>
+  </div>
+  <input [(ngModel)]="postobj.length" [ngModelOptions]="{standalone: true}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">height</span>
+  </div>
+  <input [(ngModel)]="postobj.height" [ngModelOptions]="{standalone: true}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">wingspan</span>
+  </div>
+  <input [(ngModel)]="postobj.wingspan" [ngModelOptions]="{standalone: true}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div>
+
+<button type="submit" class="btn btn-primary">Submit plane</button>
+</form>

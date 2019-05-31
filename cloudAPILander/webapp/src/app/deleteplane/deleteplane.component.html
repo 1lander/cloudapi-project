@@ -1,0 +1,9 @@
+<form #myForm="ngForm" (ngSubmit)="deleteplane()">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default">ID</span>
+    </div>
+    <input [(ngModel)]="postobj.id" [ngModelOptions]="{standalone: true}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" ngControl="post">
+  </div>
+  <button type="submit" class="btn btn-primary">Delete plane</button>
+</form>

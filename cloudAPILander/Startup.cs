@@ -1,8 +1,10 @@
+using cloudAPILander.models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,7 +23,11 @@ namespace cloudAPILander
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddDbContext<PlaneContext>(
+                options => options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")
+                )
+            );
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -30,7 +36,7 @@ namespace cloudAPILander
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, PlaneContext context)
         {
             if (env.IsDevelopment())
             {
@@ -45,6 +51,12 @@ namespace cloudAPILander
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            dbinitializer.Initialize(context);
+
+            app.UseCors(options =>
+            options.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader());
 
             app.UseMvc(routes =>
             {
@@ -52,7 +64,6 @@ namespace cloudAPILander
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
-
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,

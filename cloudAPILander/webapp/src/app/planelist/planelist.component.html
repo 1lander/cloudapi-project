@@ -1,0 +1,26 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Type</th>
+      <th scope="col">Manufacturer</th>
+      <th scope="col">Range</th>
+      <th scope="col">Seats</th>
+      <th scope="col">Length</th>
+      <th scope="col">Height</th>
+      <th scope="col">Wingspan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let plane of planes; let i = index">
+      <th scope="row">{{planes[i].id}}</th>
+      <td>{{planes[i].type}}</td>
+      <td>{{planes[i].manufacturer}}</td>
+      <td>{{planes[i].range}}</td>
+      <td>{{planes[i].seats}}</td>
+      <td>{{planes[i].length}}</td>
+      <td>{{planes[i].height}}</td>
+      <td>{{planes[i].wingspan}}</td>
+    </tr>
+  </tbody>
+</table>
