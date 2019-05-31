@@ -13,7 +13,7 @@ export class DeleteplaneComponent implements OnInit {
   constructor(private Service : AirlineService) { }
 
   deleteplane(){
-    this.Service.PostPlane(this.postobj);
+    this.Service.DeletePlane(this.postobj);
   }
 
   ngOnInit() {
