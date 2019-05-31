@@ -37,7 +37,7 @@ namespace cloudAPILander.Controllers
             return plane;
         }
 
-        //1 specifieke resource kan worden verwijderd 
+        //1 specifieke resource kan worden verwijderd id
         [Route("{id}")]
         [HttpDelete]
         public IActionResult DeletePlane(int id)
