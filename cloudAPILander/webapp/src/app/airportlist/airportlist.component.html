@@ -1,0 +1,22 @@
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Type</th>
+      <th scope="col">Manufacturer</th>
+      <th scope="col">Range (km)</th>
+      <th scope="col">Seats</th>
+      <th scope="col">Length (m)</th>
+      <th scope="col">Height (m)</th>
+      <th scope="col">Wingspan (m)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let airport of airports.body; let i = index">
+      <th scope="row">{{airports.body[i].name}}</th>
+      <td>{{airports.body[i].code}}</td>
+    </tr>
+  </tbody>
+</table>

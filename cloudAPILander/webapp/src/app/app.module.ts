@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddplaneComponent } from './addplane/addplane.component';
 import { FormsModule }   from '@angular/forms';
 import { DeleteplaneComponent } from './deleteplane/deleteplane.component';
+import { AirportlistComponent } from './airportlist/airportlist.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DeleteplaneComponent } from './deleteplane/deleteplane.component';
     PlanelistComponent,
     HomeComponent,
     AddplaneComponent,
-    DeleteplaneComponent
+    DeleteplaneComponent,
+    AirportlistComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { DeleteplaneComponent } from './deleteplane/deleteplane.component';
     RouterModule.forRoot([
       {path: "Home", component: HomeComponent},
       {path: "Planes", component: PlanelistComponent},
+      {path: "Airports", component: AirportlistComponent},
       {path: "Addplane", component: AddplaneComponent},
       {path: "Deleteplane", component: DeleteplaneComponent}
     ])

@@ -1,17 +1,21 @@
-<div class="md-form mt-0">
-  <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-</div>
+<!--
+<form #myForm="ngForm" (ngSubmit)="searchplane()" class="form-inline md-form mr-auto mb-4">
+  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+  <button [(ngModel)]="filter.id" [ngModelOptions]="{standalone: true}" class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit">Filter by manufacturer</button>
+</form>
+-->
+
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Type</th>
       <th scope="col">Manufacturer</th>
-      <th scope="col">Range</th>
+      <th scope="col">Range (km)</th>
       <th scope="col">Seats</th>
-      <th scope="col">Length</th>
-      <th scope="col">Height</th>
-      <th scope="col">Wingspan</th>
+      <th scope="col">Length (m)</th>
+      <th scope="col">Height (m)</th>
+      <th scope="col">Wingspan (m)</th>
     </tr>
   </thead>
   <tbody>

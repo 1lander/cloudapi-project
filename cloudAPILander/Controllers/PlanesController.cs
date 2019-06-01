@@ -53,11 +53,11 @@ namespace cloudAPILander.Controllers
 
         //een resource kan worden aangepast
         [HttpPut]
-        public ActionResult<Planes> UpdatePlane([FromBody]Planes Author)
+        public ActionResult<Planes> UpdatePlane([FromBody]Planes planes)
         {
-            _context.Planes.Update(Author);
+            _context.Planes.Update(planes);
             _context.SaveChanges();
-            return Created("", Author);
+            return Created("", planes);
         }
 
         //een resource kan worden aangemaakt
@@ -69,9 +69,37 @@ namespace cloudAPILander.Controllers
             return Created("", planes);
         }
 
-        public IActionResult Index()
+        //Implementeer dat er kan worden gewerkt met een 'sort' (op minstens 1 attribuut)
+
+        //implementeer dat er kan gefilterd worden (op minstens 1 attribuut)
+
+        /*public IActionResult Index()
         {
             return View();
+        }*/
+
+        public async Task<IActionResult> Index(string sortOrder)
+        {
+            ViewData["TypeSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["ManufacturerSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            var planes = from s in _context.Planes
+                           select s;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    planes = planes.OrderByDescending(s => s.type);
+                    break;
+                case "Date":
+                    planes = planes.OrderBy(s => s.manufacturer);
+                    break;
+                case "date_desc":
+                    planes = planes.OrderByDescending(s => s.seats);
+                    break;
+                default:
+                    planes = planes.OrderBy(s => s.range);
+                    break;
+            }
+            return View(await planes.AsNoTracking().ToListAsync());
         }
     }
 }
