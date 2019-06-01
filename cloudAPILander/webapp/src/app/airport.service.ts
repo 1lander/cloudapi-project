@@ -8,8 +8,8 @@ export class AirportService {
 
   constructor(private http: HttpClient) { }
 
-  GetAirport(){
-    return this.http.get<Airport[]>(`http://localhost:3000/getairport`);
+  GetAirport(name){
+    return this.http.get<Airport[]>(`http://localhost:3000/getairport/${name}`);
   }
 }
 

@@ -8,15 +8,21 @@ import { AirportService, Airport } from '../airport.service';
 })
 export class AirportlistComponent implements OnInit {
   airports: Airport[];
+  private postobj : any = {"name": ""};
+  airportname: String;
 
   constructor(private service: AirportService) { }
 
-  ngOnInit() {
-    this.service.GetAirport().subscribe(res => {
+  searchairports(){
+    this.service.GetAirport(this.airportname).subscribe(res => {
       this.airports = res;
       console.log(this.airports)
     })
-    
   }
 
+  ngOnInit() {
+    this.service.GetAirport("Berlin").subscribe(res => {
+      this.airports = res;
+    })
+  }
 }
