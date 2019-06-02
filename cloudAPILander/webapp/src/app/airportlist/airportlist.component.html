@@ -6,20 +6,22 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Type</th>
-      <th scope="col">Manufacturer</th>
-      <th scope="col">Range (km)</th>
-      <th scope="col">Seats</th>
-      <th scope="col">Length (m)</th>
-      <th scope="col">Height (m)</th>
-      <th scope="col">Wingspan (m)</th>
+      <th scope="col">Name</th>
+      <th scope="col">Airport Code</th>
+      <th scope="col">City</th>
+      <th scope="col">Country code</th>
+      <th scope="col">Longitude</th>
+      <th scope="col">Latitude</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let airport of airports; let i = index">
       <th scope="row">{{airports[i].name}}</th>
       <td>{{airports[i].code}}</td>
+      <td>{{airports[i].city}}</td>
+      <td>{{airports[i].countryCode}}</td>
+      <td>{{airports[i].location.longitude}}</td>
+      <td>{{airports[i].location.latitude}}</td>
     </tr>
   </tbody>
 </table>
