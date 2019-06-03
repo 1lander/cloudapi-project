@@ -9,6 +9,29 @@ import { AirportService, Airport } from '../airport.service';
 export class AirportlistComponent implements OnInit {
   airports: Airport[];
   airportname: String;
+  long: any;
+  lat: any;
+
+  getLocation(): void{
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position)=>{
+          const longitude = position.coords.longitude;
+          const latitude = position.coords.latitude;
+          this.callApi(longitude, latitude);
+          this.service.GetAirportLoc(latitude,longitude).subscribe(res => {
+            this.airports = res;
+          })
+          console.log(longitude);
+          console.log(latitude);
+        });
+    } else {
+       console.log("No support for geolocation")
+    }
+  }
+
+  callApi(Longitude: number, Latitude: number){
+    const url = `https://api-adresse.data.gouv.fr/reverse/?lon=${Longitude}&lat=${Latitude}`
+  }
 
   constructor(private service: AirportService) { }
 
@@ -19,8 +42,6 @@ export class AirportlistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.GetAirport("Antwerp").subscribe(res => {
-      this.airports = res;
-    })
+    this.getLocation()
   }
 }

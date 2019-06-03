@@ -11,6 +11,10 @@ export class AirportService {
   GetAirport(name){
     return this.http.get<Airport[]>(`http://localhost:3000/getairport/${name}`);
   }
+
+  GetAirportLoc(lat,long){
+    return this.http.get<Airport[]>(`http://localhost:3000/getairportbyloc/${lat}/${long}`);
+  }
 }
 
 export interface Location {

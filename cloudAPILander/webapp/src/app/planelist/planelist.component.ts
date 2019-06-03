@@ -12,7 +12,6 @@ export class PlanelistComponent implements OnInit {
 
   constructor(private service : AirlineService) { }
   searchplane(){
-    
   }
   
   onChange(){
@@ -28,5 +27,4 @@ export class PlanelistComponent implements OnInit {
       this.planes = res;
     })
   }
-
 }
