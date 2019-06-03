@@ -9,38 +9,40 @@ import { AirlineService, Plane } from '../airline.service';
 export class PlanelistComponent implements OnInit {
   planes: Plane[];
   filter:any ={};
+
   pageNum:number = 0;
+  dir:String;
+  sort:String;
 
   constructor(private service : AirlineService) { }
 
-  nextPage(){
-    this.pageNum++;
-    this.service.GetPlanes(this.pageNum).subscribe(a =>{
-      this.planes = a;
-    })
-    console.log(this.pageNum)
-  }
-  prevPage(){
-    this.pageNum--;
-    this.service.GetPlanes(this.pageNum).subscribe(a =>{
-      this.planes = a;
-    })
+  sortbywing(){
+    this.sort = "wingspan";
+    this.sub();
   }
 
-  searchplane(){
+  sortbyseat(){
+    this.sort = "seats";
+    this.sub();
   }
-  
-  onChange(){
-    var plane = this.planes;
-     if(this.filter.id){
-      plane = plane.filter(v => v.id == this.filter.id);
-     }
-      this.planes = plane;
+
+  nextPage(){
+    this.pageNum++;
+    this.sub();
+  }
+
+  prevPage(){
+    this.pageNum--;
+    this.sub();
+  }
+
+  sub(){
+    this.service.GetPlanes(this.pageNum,this.sort).subscribe(res => {
+      this.planes = res;
+    })
   }
 
   ngOnInit() {
-    this.service.GetPlanes(this.pageNum).subscribe(res => {
-      this.planes = res;
-    })
+    this.sub();
   }
 }

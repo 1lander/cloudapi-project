@@ -20,13 +20,32 @@ namespace cloudAPILander.Controllers
 
         //een resource lijst kan worden opgevraagd
         [HttpGet]
-        public List<Planes> GetPlanes(string manu, string type, int? page, int length = 2)
+        public List<Planes> GetPlanes(string manu, string type, int? page , string sort, int length = 2, string dir = "asc")
         {
             IQueryable<Planes> query = _context.Planes;
             if (!string.IsNullOrWhiteSpace(manu))
                 query = query.Where(m => m.manufacturer == manu);
             if (!string.IsNullOrWhiteSpace(type))
                 query = query.Where(l => l.type == type);
+
+            if (!string.IsNullOrWhiteSpace(sort))
+            {
+                switch (sort)
+                {
+                    case "seats":
+                        if (dir == "asc")
+                            query = query.OrderBy(m => m.seats);
+                        else if (dir == "desc")
+                            query = query.OrderByDescending(m => m.seats);
+                        break;
+                    case "wingspan":
+                        if (dir == "asc")
+                            query = query.OrderBy(o => o.wingspan);
+                        else if (dir == "desc")
+                            query = query.OrderByDescending(o => o.wingspan);
+                        break;
+                }
+            }
 
             if (page.HasValue)
                 query = query.Skip(page.Value * length);
@@ -38,12 +57,6 @@ namespace cloudAPILander.Controllers
 
 
         }
-
-        /*[HttpGet]
-        public List<Planes> GetPlanes()
-        {
-            return _context.Planes.ToList();
-        }*/
 
         //1 specifieke resource (adhv. de ID) kan worden opgevraagd
         [Route("{id}")]
