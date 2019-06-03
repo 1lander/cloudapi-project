@@ -102,15 +102,6 @@ namespace cloudAPILander.Controllers
             return Created("", planes);
         }
 
-        //Implementeer dat er kan worden gewerkt met een 'sort' (op minstens 1 attribuut)
-
-        //implementeer dat er kan gefilterd worden (op minstens 1 attribuut)
-
-        /*public IActionResult Index()
-        {
-            return View();
-        }*/
-
         public async Task<IActionResult> Index(string sortOrder)
         {
             ViewData["TypeSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
