@@ -9,8 +9,24 @@ import { AirlineService, Plane } from '../airline.service';
 export class PlanelistComponent implements OnInit {
   planes: Plane[];
   filter:any ={};
+  pageNum:number = 0;
 
   constructor(private service : AirlineService) { }
+
+  nextPage(){
+    this.pageNum++;
+    this.service.GetPlanes(this.pageNum).subscribe(a =>{
+      this.planes = a;
+    })
+    console.log(this.pageNum)
+  }
+  prevPage(){
+    this.pageNum--;
+    this.service.GetPlanes(this.pageNum).subscribe(a =>{
+      this.planes = a;
+    })
+  }
+
   searchplane(){
   }
   
@@ -23,7 +39,7 @@ export class PlanelistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.GetPlanes().subscribe(res => {
+    this.service.GetPlanes(this.pageNum).subscribe(res => {
       this.planes = res;
     })
   }

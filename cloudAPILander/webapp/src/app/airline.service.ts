@@ -12,8 +12,8 @@ export class AirlineService {
     return this.http.get<Plane[]>(`http://localhost:2574/api/planes/${id}`);
   }
 
-  GetPlanes(){
-    return this.http.get<Plane[]>("http://localhost:2574/api/planes");
+  GetPlanes(page){
+    return this.http.get<Plane[]>(`http://localhost:2574/api/planes?page=${page}`);
   }
 
   PostPlane(o){

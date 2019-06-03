@@ -31,3 +31,6 @@
     </tr>
   </tbody>
 </table>
+
+<button type="button" class="btn btn-primary" [disabled]="pageNum == 0" (click)="prevPage()">Previous page</button>
+<button type="button" class="btn btn-primary" (click)="nextPage()">Next page</button>
